@@ -13,33 +13,7 @@ buttons.forEach(button => {
             display.textContent += '-';
         }
         else if (button.textContent == '=') {
-            if(display.textContent.includes('^')){
-                let temp=display.textContent;
-                var count = temp.match(/\W/g).length;
-                if(count>1){
-                    display.textContent = 'Syntax Error!';
-                }
-                let base= display.textContent.slice(0,display.textContent.indexOf('^'));
-                let exponent= display.textContent.slice(display.textContent.indexOf('^')+1);
-                display.textContent = displayAns(Math.pow(base, exponent));
-            }else if(display.textContent.includes('%')){
-                let temp=display.textContent;
-                var count = temp.match(/\W/g).length;
-                if(count>1){
-                    display.textContent = 'Syntax Error!';
-                }
-                let n1= display.textContent.slice(0,display.textContent.indexOf('%'));
-                let n2= display.textContent.slice(display.textContent.indexOf('%')+1);
-                display.textContent = displayAns(n1%n2);
-            }
-            else{
-                try{
-                    display.textContent = displayAns( eval(display.textContent));
-                }
-                catch{
-                    display.textContent = 'Syntax Error!';
-                }
-            }
+            equals(display.textContent);
         }
         else if (button.textContent == 'xy') {
             display.textContent += '^';
@@ -48,16 +22,10 @@ buttons.forEach(button => {
             display.textContent = '';
         }
         else if (button.textContent == '⌫') {
-            if (display.textContent.length > 0) {
-                display.textContent = display.textContent.slice(0, -1);
-            }
+            back(display.textContent);
         }
         else if (button.textContent == '±') {
-            if (display.textContent.charAt(0) == '-') {
-                display.textContent = display.textContent.slice(1);
-            } else {
-                display.textContent = '-' + display.textContent;
-            }
+            pm_toggle(display.textContent );
         }
         else if (button.textContent == 'mod') {
             display.textContent += '%';
@@ -69,7 +37,7 @@ buttons.forEach(button => {
             display.textContent = displayAns(Math.log10(display.textContent));
         }
         else if (button.textContent == 'π') {
-            display.textContent = displayAns(display.textContent*Math.PI);
+            displayPI(display.textContent);
         }
         else if (button.textContent == '10x') {
             display.textContent = displayAns(Math.pow(10,display.textContent));
@@ -78,11 +46,7 @@ buttons.forEach(button => {
             display.textContent = displayAns(Math.sqrt(display.textContent));
         }
         else if (button.textContent == 'n!') {
-            let fact=1;
-            for (let i = 1; i <= display.textContent; i++) {
-                fact *= i;
-            }
-            display.textContent = fact;
+            fact(display.textContent);
         }
         else if (button.textContent == 'x2') {
             display.textContent = displayAns(Math.pow(display.textContent,2));
@@ -105,6 +69,15 @@ buttons.forEach(button => {
         else if (button.textContent == 'tan') {
             display.textContent = displayAns(Math.tan(display.textContent));
         }
+        else if (button.textContent == 'asin') {
+            display.textContent = displayAns(Math.asin(display.textContent));
+        }
+        else if (button.textContent == 'acos') {
+            display.textContent = displayAns(Math.acos(display.textContent));
+        }
+        else if (button.textContent == 'atan') {
+            display.textContent = displayAns(Math.atan(display.textContent));
+        }
         else if (button.textContent == '⌈x⌉') {
             display.textContent = displayAns(Math.ceil(display.textContent));
         }
@@ -115,19 +88,13 @@ buttons.forEach(button => {
             display.textContent = displayAns(Math.random());
         }
         else if (button.textContent == 'M+') {
-            memory += parseFloat(display.textContent);
-            data_memory.push(memory);
-            display.textContent = memory;
+            mAdd(display.textContent);
         }
         else if (button.textContent == 'M-') {
-            memory -= display.textContent;
-            data_memory.push(memory);
-            display.textContent = memory;
+            mSub(display.textContent);
         }
         else if (button.textContent == 'MC') {
-            memory = 0;
-            data_memory=[];
-            display.textContent = data_memory;
+            mClear();
         }
         else if (button.textContent == 'MR') {
             display.textContent = data_memory;
@@ -164,17 +131,100 @@ buttons.forEach(button => {
     });
 });
 
-function displayAns(ans) {
+
+
+const equals = (Content)=>{
+    if(Content.includes('^')){
+        let temp=Content;
+        var count = temp.match(/\W/g).length;
+        if(count>1){
+            display.textContent = 'Syntax Error!';
+        }
+        let base= Content.slice(0,Content.indexOf('^'));
+        let exponent= Content.slice(Content.indexOf('^')+1);
+        display.textContent = displayAns(Math.pow(base, exponent));
+    }else if(Content.includes('%')){
+        let temp=Content;
+        var count = temp.match(/\W/g).length;
+        if(count>1){
+            display.textContent = 'Syntax Error!';
+        }
+        let n1= Content.slice(0,Content.indexOf('%'));
+        let n2= Content.slice(Content.indexOf('%')+1);
+        display.textContent = displayAns(n1%n2);
+    }
+    else{
+        try{
+            display.textContent = displayAns( eval(Content));
+        }
+        catch{
+            display.textContent = 'Syntax Error!';
+        }
+    }
+}
+
+const displayAns=(ans)=> {
     if (countDecimal(ans) > 10) {
         return ans.toFixed(10);
     } else {
         return ans;
     }
 }
-function countDecimal(ans) {
+const countDecimal=(ans)=> {
     if (!Number.isInteger(ans)) {
         return ans.toString().split(".")[1].length;
     } else {
         return 0;
     }
+}
+
+const back=(content)=>{
+    if (content.length > 0) {
+        content = content.slice(0, -1);
+    }
+    display.textContent=content;
+}
+
+const pm_toggle=(content)=>{
+    if (content.charAt(0) == '-') {
+        content = content.slice(1);
+    } else {
+        content = '-' + content;
+    }
+    display.textContent= content;
+}
+
+const displayPI = (content) =>{
+    console.log(typeof(c));
+    if(content == ''){
+        display.textContent = 3.14159265359;
+    }
+    display.textContent = displayAns(content*Math.PI);
+}
+
+const fact=(content)=>{
+    let fact=1;
+    for (let i = 1; i <= content; i++) {
+        fact *= i;
+    }
+    content = fact;
+    display.textContent= content;
+}
+
+const mAdd=(content)=>{
+    memory += parseFloat(content);
+    data_memory.push(memory);
+    display.textContent = memory;
+}
+
+const mSub=(content)=>{
+    memory -= content;
+    data_memory.push(memory);
+    display.textContent = memory;
+}
+
+const mClear=()=>{
+memory = 0;
+data_memory=[];
+display.textContent = data_memory;
 }
