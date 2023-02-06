@@ -13,6 +13,7 @@ buttons.forEach(button => {
             display.textContent += '-';
         }
         else if (button.textContent == '=') {
+            equals(content);
             if(display.textContent.includes('^')){
                 let temp=display.textContent;
                 var count = temp.match(/\W/g).length;
