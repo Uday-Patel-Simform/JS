@@ -35,13 +35,16 @@
 }
 
 /* form inputs */
-.input input,
+.input{
+  width: 49%;
+}
+input,
 textarea {
   width: 100%;
   padding: 5px;
   margin-bottom: 10px;
   font-size: 18px;
-  border-radius: 5px;
+  border-radius: 3px;
   border: 1px solid #ccc;
 }
 
@@ -88,7 +91,7 @@ label {
   width: 100% !important;
 }
 .filter-sort{
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
 .filter {
@@ -241,3 +244,15 @@ border-radius: 3px;
     font-size: 20px;
   }
 }
+
+@media (max-width: 390px) {
+  .input{
+    width: 100%;
+    padding: 0px !important;
+  }
+  input,
+  textarea {
+    width: 100%;
+  }
+}
+
