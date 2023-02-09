@@ -1,0 +1,243 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* navbar */
+.navbar {
+  width: 75%;
+  height: 80px;
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: #ffff;
+  border-bottom: 1px solid #f0f0f0;
+  box-shadow: 0 1px 10px 0 rgb(0 0 0/ 10%);
+}
+.navbar-brand {
+  font-size: 35px !important;
+  letter-spacing: -2px;
+  font-weight: 500;
+  color: #9e0000 !important;
+}
+.nav-item {
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #ffff;
+  border-bottom: 2px solid #ffff;
+  transition: border-bottom 1s ease;
+}
+.nav-item:hover {
+  border-bottom: 1px solid #000000;
+}
+.nav-link {
+  color: #000000 !important;
+}
+
+/* form inputs */
+.input input,
+textarea {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+label {
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+}
+
+.form-button {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+  background-color: #0099ff;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-button:hover {
+  background-color: #006eff;
+}
+
+/* home page */
+.app-container{
+  width: 75% !important;
+}
+.function-container{
+  width: 75% !important;
+  margin-top: 100px;
+}
+.main-title{
+  width: 100% !important;
+}
+.filter-sort{
+  justify-content: space-evenly;
+  align-items: center;
+}
+.filter {
+  padding: 3px;
+  font-size: 15px;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+}
+.f-label ,
+.sort-label{
+  font-size: 15px;
+  font-weight: 300;
+}
+.sort-btn{
+background-color: #0099ff;
+border: none;
+height: 30px;
+width: 200px;
+color: #ffffff;
+border-radius: 3px;
+}
+.dropdown-item{
+  cursor: pointer;
+}
+.display-container{
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* product card */
+.product {
+  width: 250px;
+  box-shadow: 0 2px 4px 0 rgba(0 0 0 / 10%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #eeeeee !important;
+  margin-right: 5px !important;
+  margin-bottom: 15px !important;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.card-title {
+  font-size: 25px;
+  height: 25px;
+  font-weight: 500;
+  margin-bottom: 0px !important;
+}
+.card-id {
+  margin-bottom: 5px !important;
+}
+.card-desc {
+  text-align: center;
+  height: 50px;
+  width: 100%;
+  color: rgb(161, 161, 161);
+  overflow: hidden;
+}
+.card-price {
+  font-size: 25px;
+  font-weight: 500;
+}
+.card-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  margin-bottom: 10px;
+}
+.card-button {
+  width: 45%;
+  border: none;
+  border-radius: 2px;
+}
+.delete-button {
+  color: #fff;
+  background-color: #ff3a3a;
+}
+.edit-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #008f00;
+}
+
+@media (max-width: 1024px) {
+  .navbar {
+    width: 100%;
+  }
+  .navbar-brand {
+    font-size: 35px !important;
+  }
+  .nav-item {
+    font-size: 20px !important;
+  }
+  .app-container{
+    width: 90% !important;
+  }
+ .function-container{
+  width: 100% !important;
+ }
+}
+
+@media (max-width: 727px) {
+  .filter{
+    width: 100px;
+  }
+  .sort-btn{
+    width: 150px;
+    font-size: 13px;
+  }
+  .product{
+    width: 200px;
+  }
+}
+
+@media (max-width: 522px) {
+  .filter-sort{
+    justify-content: flex-start;
+  }
+  .filter-function{
+    margin-bottom: 10px;
+  }
+  .display-container{
+    justify-content: center;
+  }
+  .product{
+    margin-right: 0px !important;
+    width: 250px;
+  }
+  .card-title {
+    font-size: 20px;
+    height: 20px;
+  }
+  .card-id {
+    font-size: 15px;
+  }
+  .card-desc {
+    height: 30px;
+    font-size: 15px;
+  }
+  .card-price {
+    font-size: 20px;
+  }
+}
