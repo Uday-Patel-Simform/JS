@@ -162,7 +162,7 @@ const products_toggle = () => {
         let product_list = JSON.parse(localStorage.getItem('product_list')) || [];
         let selected_product = product_list.find(product => product.productId === id);
         pid.value = selected_product.productId;
-        pid.disabled=true;
+        pid.disabled = true;
         pname.value = selected_product.productName;
         pimg.value = selected_product.image;
         pprice.value = selected_product.price;
@@ -176,21 +176,22 @@ const products_toggle = () => {
     }
 
     // Add a product to the product list
-    function add_product(product) {
+    function add_product(product, e) {
+        let ctr = 0;
         product_list.map(p => {
-            if (p.productId === product.productId) {
-                alert('Product Id should be unique')
+            if (p.productId == product.productId) {
+                alert('Product Id should be unique');
+                ctr++;
             }
-            else {
-                product_list.push(product);
-                localStorage.setItem('product_list', JSON.stringify(product_list));
-                // form data reset on successful form submission
-                form_data.reset();
-                click_event = e || window.e;
-                window.history.pushState({}, '', click_event.target.href);
-                changeLocation();
-            }
-        })
+        });
+        if (ctr == 0) {
+            product_list.push(product);
+            localStorage.setItem('product_list', JSON.stringify(product_list));
+            // form data reset on successful form submission
+            form_data.reset();
+            window.history.pushState({}, '', e.target.href);
+            changeLocation();
+        }
     }
     // deciding button text based on page title
     if (window.location.hash == '#addproduct') {
@@ -224,8 +225,9 @@ const products_toggle = () => {
         }
         // deciding which functionality to apply
         if (f_button.textContent == 'ADD Product') {
-            add_product(product);
-        } else if (f_button.textContent == 'Save') {
+            click_event = e || window.e;
+            add_product(product, click_event);
+        } else {
             edit_product(productId, product);
             // form data reset on successful form submission
             form_data.reset();
