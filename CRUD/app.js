@@ -41,11 +41,12 @@ changeLocation();
 function update_product_list(product_list) {
     let product_list_element = document.querySelector('.display-container');
     let product_listHTML = product_list.map(product => {
+        let thumbnail = localStorage.getItem(product.productId);
         return `
 
       <div class="product card d-flex justify-content-center align-items-center">
                                 <div class="img_container">
-                                <p class='product-image'>${product.image}</p>
+                                <img class='product-image' src='${thumbnail}'></img>
                                 </div>
                                 <div class="card-body p-0">
                                     <div class="card-title"> ${product.productName}</div>
@@ -149,7 +150,7 @@ const home_functions = () => {
 const products_toggle = () => {
     let pid = document.querySelector('#productId');
     let pname = document.querySelector('#productName');
-    let pimg = document.querySelector('#image');
+    let pimg = document.querySelector('#p-image');
     let pprice = document.querySelector('#price');
     let pdesc = document.querySelector('#description');
     let f_button = document.querySelector('.form-button');
@@ -164,15 +165,29 @@ const products_toggle = () => {
         pid.value = selected_product.productId;
         pid.disabled = true;
         pname.value = selected_product.productName;
-        pimg.value = selected_product.image;
+        // pimg.value = selected_product.image;
         pprice.value = selected_product.price;
         pdesc.value = selected_product.description;
     }
     // update product in locale storage
-    const edit_product = (productId, product) => {
+    const edit_product = (productId, product, image) => {
+        console.log(image);
         let product_index = product_list.findIndex(p => p.productId === productId);
         product_list[product_index] = product;
+        if (!image) {
+        } else {
+            image_handler(product.productId, image);
+        }
+
         localStorage.setItem('product_list', JSON.stringify(product_list));
+    }
+    // Handling image file
+    const image_handler = (id, image) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(image);
+        reader.addEventListener('load', () => {
+            localStorage.setItem(id, reader.result);
+        });
     }
 
     // Add a product to the product list
@@ -206,7 +221,7 @@ const products_toggle = () => {
         e.preventDefault();
         let productId = pid.value;
         let productName = pname.value;
-        let image = pimg.value;
+        let image = pimg.files[0];
         let price = pprice.value;
         let description = pdesc.value;
 
@@ -214,21 +229,28 @@ const products_toggle = () => {
         let product = {
             productId: productId,
             productName: productName,
-            image: image,
+            // image: image,
             price: price,
             description: description
         };
-        // checking for empty fields
-        if (!productId || !productName || !image || !price || !description) {
-            alert("All fields are required");
-            return;
-        }
+
         // deciding which functionality to apply
         if (f_button.textContent == 'ADD Product') {
+            // checking for empty fields
+            if (!productId || !productName || !image || !price || !description) {
+                alert("All fields are required");
+                return;
+            }
             click_event = e || window.e;
             add_product(product, click_event);
+            image_handler(product.productId, image);
         } else {
-            edit_product(productId, product);
+            edit_product(productId, product, image);
+            // checking for empty fields
+            if (!productId || !productName || !price || !description) {
+                alert("All fields are required");
+                return;
+            }
             // form data reset on successful form submission
             form_data.reset();
             click_event = e || window.e;
