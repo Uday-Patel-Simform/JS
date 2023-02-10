@@ -13,8 +13,8 @@ routers.forEach(route => (route.addEventListener('click', (e) => {
 })));
 
 const routs = {
-    "": "./home.html",
-    "/": "./home.html",
+    "": "./component/home.html",
+    "/": "./component/home.html",
     "#home": "./component/home.html",
     "#editproducts": "./component/form.html",
     "#addproduct": "./component/form.html"
@@ -51,7 +51,7 @@ function update_product_list(product_list) {
                                     <div class="card-title"> ${product.productName}</div>
                                     <div class="card-id">Product Id: ${product.productId}</div>
                                     <div class="card-desc"> ${product.description}</div>
-                                    <div class="card-price"> ${product.price}</div>
+                                    <div class="card-price"> ${product.price + '/-'}</div>
                                     <div class="card-buttons">
                                     <a class="edit-button card-button" data-product-id="${product.productId}" href='#editproducts'>Edit</a>
                                     <button class="delete-button card-button" data-product-id="${product.productId}">Delete</button>
@@ -111,15 +111,20 @@ const home_functions = () => {
     }
     const sort_products = (sortby) => {
         let sorted_product_list = product_list.sort((a, b) => {
+            let sort_btn = document.querySelector('.sort-btn');
             if (sortby == 'Product Name') {
+                sort_btn.textContent = sortby;
                 return a.productName.localeCompare(b.productName);
             } else if (sortby == 'Product ID') {
+                sort_btn.textContent = sortby;
                 return sort_numbers(a.productId, b.productId);
             }
             else if (sortby == 'Price(L-H)') {
+                sort_btn.textContent = sortby;
                 return sort_numbers(a.price, b.price);
             }
             else if (sortby == 'Price(H-L)') {
+                sort_btn.textContent = sortby;
                 return sort_numbers(b.price, a.price);
             }
         });
@@ -157,6 +162,7 @@ const products_toggle = () => {
         let product_list = JSON.parse(localStorage.getItem('product_list')) || [];
         let selected_product = product_list.find(product => product.productId === id);
         pid.value = selected_product.productId;
+        pid.disabled=true;
         pname.value = selected_product.productName;
         pimg.value = selected_product.image;
         pprice.value = selected_product.price;
@@ -171,8 +177,20 @@ const products_toggle = () => {
 
     // Add a product to the product list
     function add_product(product) {
-        product_list.push(product);
-        localStorage.setItem('product_list', JSON.stringify(product_list));
+        product_list.map(p => {
+            if (p.productId === product.productId) {
+                alert('Product Id should be unique')
+            }
+            else {
+                product_list.push(product);
+                localStorage.setItem('product_list', JSON.stringify(product_list));
+                // form data reset on successful form submission
+                form_data.reset();
+                click_event = e || window.e;
+                window.history.pushState({}, '', click_event.target.href);
+                changeLocation();
+            }
+        })
     }
     // deciding button text based on page title
     if (window.location.hash == '#addproduct') {
@@ -209,11 +227,11 @@ const products_toggle = () => {
             add_product(product);
         } else if (f_button.textContent == 'Save') {
             edit_product(productId, product);
+            // form data reset on successful form submission
+            form_data.reset();
+            click_event = e || window.e;
+            window.history.pushState({}, '', click_event.target.href);
+            changeLocation();
         }
-        // form data reset on successful form submission
-        form_data.reset();
-        click_event = e || window.e;
-        window.history.pushState({}, '', click_event.target.href);
-        changeLocation();
     });
 }
