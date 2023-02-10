@@ -93,15 +93,26 @@ label {
 .filter-sort{
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+.filter-function{
+  display: flex;
+  width: 50%;
+  margin-right: 5px;
 }
 .filter {
+  width: 50%;
   padding: 3px;
   font-size: 15px;
   border-radius: 2px;
   border: 1px solid #ccc;
 }
-.f-label ,
-.sort-label{
+.f-label{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width:150px;
   font-size: 15px;
   font-weight: 300;
 }
@@ -183,6 +194,17 @@ border-radius: 3px;
   color: #fff;
   background-color: #008f00;
 }
+.img_container{
+  min-height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+}
+.product-image{
+  margin: 0px;
+}
 
 @media (max-width: 1024px) {
   .navbar {
@@ -203,8 +225,8 @@ border-radius: 3px;
 }
 
 @media (max-width: 727px) {
-  .filter{
-    width: 100px;
+  .filter-function{
+    width: 65%;
   }
   .sort-btn{
     width: 150px;
@@ -213,6 +235,9 @@ border-radius: 3px;
   .product{
     width: 200px;
   }
+  .f-label{
+    width: 150px;
+  }
 }
 
 @media (max-width: 522px) {
@@ -220,7 +245,22 @@ border-radius: 3px;
     justify-content: flex-start;
   }
   .filter-function{
+    width: 100%;
     margin-bottom: 10px;
+    flex-direction: column;
+    margin-right: 0px;
+  } 
+  .filter{
+    width: 100%;
+  }
+  .sort-function{
+    width: 100%;
+  }
+  .btn-group{
+    width: 100%;
+  }
+  .sort-btn{
+    width: 100%;
   }
   .display-container{
     justify-content: center;
@@ -246,6 +286,14 @@ border-radius: 3px;
 }
 
 @media (max-width: 390px) {
+  .navbar{
+    padding-right: 5px ;
+    padding-left: 5px;
+  }
+  .navbar-expand .navbar-nav .nav-link {
+    font-size: 15px;
+    padding: 0px !important;
+  }
   .input{
     width: 100%;
     padding: 0px !important;
@@ -255,4 +303,3 @@ border-radius: 3px;
     width: 100%;
   }
 }
-
