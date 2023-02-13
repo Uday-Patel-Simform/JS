@@ -210,9 +210,11 @@ const products_toggle = () => {
     }
     // deciding button text based on page title
     if (window.location.hash == '#addproduct') {
+        document.querySelector('.form-title').textContent = 'ADD Product'
         f_button.textContent = 'ADD Product';
     } else {
         display_edit_product(id);
+        document.querySelector('.form-title').textContent = 'Edit Product'
         f_button.textContent = 'Save';
     }
 
