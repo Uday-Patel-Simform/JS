@@ -40,29 +40,34 @@ changeLocation();
 // Updating the product list HTML on each change
 function update_product_list(product_list) {
     let product_list_element = document.querySelector('.display-container');
-    let product_listHTML = product_list.map(product => {
-        let thumbnail = localStorage.getItem(product.productId);
-        return `
-
-      <div class="product card d-flex justify-content-center align-items-center">
-                                <div class="img_container">
-                                <img class='product-image' src='${thumbnail}'></img>
-                                </div>
-                                <div class="card-body p-0">
-                                    <div class="card-title"> ${product.productName}</div>
-                                    <div class="card-id">Product Id: ${product.productId}</div>
-                                    <div class="card-desc"> ${product.description}</div>
-                                    <div class="card-price"> ${product.price + '/-'}</div>
-                                    <div class="card-buttons">
-                                    <a class="edit-button card-button" data-product-id="${product.productId}" href='#editproducts'>Edit</a>
-                                    <button class="delete-button card-button" data-product-id="${product.productId}">Delete</button>
+    if (product_list.length == 0) {
+        product_list_element.innerHTML = `<h2 class="title d-flex justify-content-center align-items-center w-100"> No products Available</h2>`
+    }
+    else {
+        let product_listHTML = product_list.map(product => {
+            let thumbnail = localStorage.getItem(product.productId);
+            return `
+    
+          <div class="product card d-flex justify-content-center align-items-center">
+                                    <div class="img_container">
+                                    <img class='product-image' src='${thumbnail}'></img>
                                     </div>
-                                    
-                                </div>
-                                </div>
-    `;
-    }).join('');
-    product_list_element.innerHTML = product_listHTML;
+                                    <div class="card-body p-0">
+                                        <div class="card-title"> ${product.productName}</div>
+                                        <div class="card-id">Product Id: ${product.productId}</div>
+                                        <div class="card-desc"> ${product.description}</div>
+                                        <div class="card-price"> ${product.price + '/-'}</div>
+                                        <div class="card-buttons">
+                                        <a class="edit-button card-button" data-product-id="${product.productId}" href='#editproducts'>Edit</a>
+                                        <button class="delete-button card-button" data-product-id="${product.productId}">Delete</button>
+                                        </div>
+                                        
+                                    </div>
+                                    </div>
+        `;
+        }).join('');
+        product_list_element.innerHTML = product_listHTML;
+    }
 }
 
 // let delete_button = document.querySelectorAll('.delete-button');
@@ -244,7 +249,7 @@ const products_toggle = () => {
                 return;
             }
             click_event = e || window.e;
-            add_product(product, click_event ,image);
+            add_product(product, click_event, image);
         } else {
             edit_product(productId, product, image);
             // checking for empty fields
