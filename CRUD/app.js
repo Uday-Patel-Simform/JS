@@ -26,7 +26,7 @@ const changeLocation = async () => {
     const html = await fetch(route).then((data) => data.text());
     // .then(text => document.querySelector('.app').innerHTML = text)
     document.querySelector('.function-container').innerHTML = html;
-    if (path == '#home') {
+    if (path == '#home' || path == '/' || path == '') {
         home_functions();
     } else if (path == '#addproduct' || path == '#editproducts') {
         products_toggle();
@@ -74,6 +74,7 @@ function update_product_list(product_list) {
 // });
 
 const home_functions = () => {
+    update_product_list(product_list);
     // Delete a product from the product list
     document.addEventListener('click', (event) => {
         if (event.target.classList.contains('delete-button')) {
@@ -135,7 +136,6 @@ const home_functions = () => {
     sort.forEach(item => item.addEventListener('click', (e) => {
         sort_products(e.target.textContent);
     }));
-    update_product_list(product_list);
 
     document.querySelectorAll('.edit-button').forEach(button => button.addEventListener('click', (event) => {
         if (event.target.classList.contains('edit-button')) {
