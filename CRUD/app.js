@@ -171,7 +171,6 @@ const products_toggle = () => {
     }
     // update product in locale storage
     const edit_product = (productId, product, image) => {
-        console.log(image);
         let product_index = product_list.findIndex(p => p.productId === productId);
         product_list[product_index] = product;
         if (!image) {
@@ -191,10 +190,10 @@ const products_toggle = () => {
     }
 
     // Add a product to the product list
-    function add_product(product, e) {
+    function add_product(product, e, image) {
         let ctr = 0;
         product_list.map(p => {
-            if (p.productId == product.productId) {
+            if (p.productId === product.productId) {
                 alert('Product Id should be unique');
                 ctr++;
             }
@@ -202,6 +201,7 @@ const products_toggle = () => {
         if (ctr == 0) {
             product_list.push(product);
             localStorage.setItem('product_list', JSON.stringify(product_list));
+            image_handler(product.productId, image);
             // form data reset on successful form submission
             form_data.reset();
             window.history.pushState({}, '', e.target.href);
@@ -242,8 +242,7 @@ const products_toggle = () => {
                 return;
             }
             click_event = e || window.e;
-            add_product(product, click_event);
-            image_handler(product.productId, image);
+            add_product(product, click_event ,image);
         } else {
             edit_product(productId, product, image);
             // checking for empty fields
