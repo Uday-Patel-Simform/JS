@@ -1,0 +1,278 @@
+/* font-family: 'Noto Sans Mono', monospace;
+font-family: 'Ubuntu Mono', monospace; */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans Mono", monospace;
+}
+/* Navigation bar */
+.navbar {
+  width: 75% !important;
+  height: 100px;
+  background-color: #ffff;
+  border-bottom: 2px solid #000000;
+}
+.navbar-brand {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 50px !important;
+  letter-spacing: -2px;
+  font-weight: 600;
+  color: #800080 !important;
+}
+.nav-item {
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: #ffff;
+  border-bottom: 2px solid #ffff;
+  transition: border-bottom 1s ease;
+}
+.nav-item:hover {
+  border-bottom: 2px solid #000000;
+}
+.nav-link {
+  color: #000000 !important;
+}
+
+/* Home container */
+.home {
+  border-bottom: 2px solid #000000;
+  width: 75% !important;
+}
+.home-container {
+  margin-top: 140px;
+  width: 85%;
+}
+.home-title,
+.home-bottom,
+.about-title,
+.about-bottom,
+.services-title,
+.services-bottom,
+.images-title,
+.images-bottom {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 70px;
+  text-align: center;
+  font-weight: 600;
+  color: #0e3d91;
+}
+.home-title {
+  font-size: 80px;
+}
+.home-desc {
+  margin-top: 30px;
+  width: 60%;
+  text-align: center;
+}
+.home-scroll-button {
+  text-decoration: none;
+  color: #000000;
+  background-color: #ffff;
+  width: 15%;
+  border: 2px solid #000000;
+  font-size: 20px;
+  height: 30px;
+}
+.home-scroll-button:hover {
+  color: #ffff;
+  background-color: #0e3d91;
+}
+.home-bottom,
+.about-bottom,
+.images-bottom,
+.services.bottom {
+  font-size: 50px;
+}
+
+/* About-Us */
+.about-container {
+  margin-top: 85px;
+}
+.about-us {
+  border-bottom: 2px solid #000000;
+}
+.about-title,
+.services-title,
+.images-title {
+  border-bottom: 5px solid #0e3d91;
+}
+.about-desc {
+  width: 80%;
+  text-align: justify;
+}
+
+/* services */
+
+.services {
+  width: 75% !important;
+  border-bottom: 2px solid #000000;
+}
+.services-container,
+.images {
+  margin-top: 120px;
+}
+.card {
+  width: 300px !important;
+  border: 2px solid #000000 !important;
+  border-radius: 0px !important;
+}
+.card-title {
+  font-weight: bold;
+}
+.card-text {
+  font-size: 15px;
+}
+.btn {
+  background-color: #ffff !important;
+  border: 2px solid #000000 !important;
+  color: #0e3d91 !important;
+  border-radius: 0px !important;
+  font-weight: bold !important;
+}
+.btn:hover {
+  background-color: #0e3d91 !important;
+  color: #ffff !important;
+}
+
+/* image-slider */
+.slider {
+  max-width: 60rem;
+  height: 40rem;
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.slide {
+  width: 100%;
+  position: absolute;
+  object-fit: contain;
+  transition: 1s ease;
+}
+.slider-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 8px 15px;
+  margin-top: -22px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  user-select: none;
+  background-color: #ffff;
+  border-radius: 50%;
+  text-decoration: none;
+}
+.previous {
+  left: 2%;
+}
+.next {
+  right: 2%;
+}
+
+/* responsive */
+
+/* ipda pro(tab view) */
+
+@media (max-width: 1024px) {
+  .navbar {
+    width: 90%;
+  }
+  .navbar-brand {
+    font-size: 35px !important;
+  }
+  .nav-item {
+    font-size: 20px !important;
+  }
+  .home-container {
+    width: 100%;
+  }
+  .home-title {
+    font-size: 60px;
+  }
+  .home-desc {
+    width: 75%;
+  }
+  .about-container {
+    margin-top: 50px;
+  }
+}
+
+/* ipad-mini (tab-view-small) */
+@media (max-width: 768px) {
+  .home-bottom,
+  .about-title,
+  .about-bottom,
+  .services-title,
+  .services-bottom,
+  .images-title,
+  .images-bottom {
+    font-size: 50px;
+  }
+ 
+  .home-scroll-button {
+    font-size: 15px;
+  }
+  .about-desc {
+    width: 100%;
+  }
+
+  .card{
+    width: 250px !important;
+  }
+  .card-title{
+    font-size: 16px;
+  }
+  .card-text{
+    font-size: 12px;
+  }
+  .btn{
+    height: 25px;
+    padding: 0px !important;
+    font-size: 12px;
+  }
+  .slider{
+    height: 20rem;
+  }
+}
+ 
+/* mobile wide */
+@media (max-width: 600px) {
+  .home{
+    width: 80% !important;
+  }
+  .home-title{
+    font-size: 40px;
+  }
+  .home-bottom,
+  .about-title,
+  .about-bottom,
+  .services-title,
+  .services-bottom,
+  .images-title,
+  .images-bottom {
+    font-size: 30px;
+  }
+  .home-desc{
+    font-size: 15px;
+  }
+  .about-desc{
+    font-size: 12px;
+  }
+  .services{
+    width: 85% !important;
+    padding: 0px !important;
+  }
+}
+
+/* mobile small */
+@media (max-width: 360px) {
+  .slider{
+    height: 10rem;
+  }
+}
