@@ -4,27 +4,30 @@
         <div class="input-group d-flex flex-wrap w-100 justify-content-between">
             <div class="input mt-1">
                 <label for="productId">Product Id:</label>
-                <input type="number" id="productId" name="productId" placeholder="ID">
+                <input class="ip" type="number" id="productId" name="productId" placeholder="ID">
             </div>
             <div class="input mt-1">
                 <label for="productName">Product Name:</label>
-                <input type="text" id="productName" name="productName" placeholder="Name">
+                <input class="ip" type="text" id="productName" name="productName" placeholder="Name">
             </div>
         </div>
         <div class="input-group d-flex flex-wrap w-100 justify-content-between">
             <div class="input mt-1 ">
                 <label for="image">Image:</label>
-                <input type="file" id="p-image" name="image" accept="image/*">
+                <input class="ip" type="file" id="p-image" name="image" accept="image/*">
                 <!-- <input type="text" id="image" name="image"> -->
             </div>
             <div class="input mt-1">
                 <label for="price">Price:</label>
-                <input type="number" id="price" name="price" placeholder="??/-">
+                <input class="ip" type="number" id="price" name="price" placeholder="??/-">
             </div class="input">
         </div>
         <div class="input mt-1 w-100">
             <label for="description">Description:</label>
-            <textarea id="description" name="description" placeholder="describe the product"></textarea>
+            <textarea class="ip" id="description" name="description" placeholder="describe the product"></textarea>
+        </div>
+        <div class="mt-2 w-100 d-flex align-items-center justify-content-center">
+            <p class="alert"></p>
         </div>
         <a type="submit" class="form-button mt-2" href="#home"></a>
     </form>
