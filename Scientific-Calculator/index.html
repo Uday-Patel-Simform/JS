@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <title>Scientific Calculator</title>
+</head>
+
+<body>
+    <div class="container-fluid h-100 w-100 d-flex justify-content-center align-items-center">
+        <div class="cal-container d-flex flex-column">
+            <div class="buttons row m-0">
+                <h1 class="cal-display w-100 m-0 d-flex flex-row-reverse"></h1>
+            </div>
+            <div class="buttons row m-0">
+                <button class="cal-btn f-row-btn me-1 ms-1 mb-1 b">DEG</button>
+                <button class="cal-btn f-row-btn mb-1 b">F-E</button>
+            </div>
+            <div class="buttons row m-0">
+                <button class="cal-btn s-row-btn col me-1 ms-1 mb-1 b" id="mc" disabled >MC</button>
+                <button class="cal-btn s-row-btn col col me-1 mb-1 b" id="mr" disabled >MR</button>
+                <button class="cal-btn s-row-btn col col me-1 mb-1 b">M+</button>
+                <button class="cal-btn s-row-btn col col me-1 mb-1 b">M-</button>
+                <button class="cal-btn s-row-btn col col me-1 mb-1 b">MS</button>
+            </div>
+            <div class="buttons row m-0">
+                <div class="dropdown trigno p-0">
+                    <button class="dm ms-1 w-100 d-flex justify-content-around align-items-center border-0 s-row-btn"
+                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://img.icons8.com/ios-glyphs/30/null/trigonometry.png" />
+                        Trigonometry
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item cal-btn">sin</li>
+                        <li class="dropdown-item cal-btn">cos</li>
+                        <li class="dropdown-item cal-btn">tan</li>
+                        <li class="dropdown-item cal-btn">asin</li>
+                        <li class="dropdown-item cal-btn">acos</li>
+                        <li class="dropdown-item cal-btn">atan</li>
+                    </ul>
+                </div>
+                <div class="dropdown trigno p-0">
+                    <button class="dm ms-3 fun d-flex justify-content-around align-items-center border-0 s-row-btn"
+                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span>&#402;</span>
+                        Function
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item cal-btn">⌈x⌉</li>
+                        <li class="dropdown-item cal-btn">⌊x⌋</li>
+                        <li class="dropdown-item cal-btn">RAN</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="buttons row m-0">
+                <div class="dropdown p-0 cal-btn-dd me-1 ms-1 mb-1">
+                    <button class="d-flex justify-content-center align-items-center w-100 border-0 h-100"
+                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        2<sup>nd</sup>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item cal-btn">2<sup>x</sup></li>
+                        <li class="dropdown-item cal-btn">3<sup>x</sup></li>
+                        <li class="dropdown-item cal-btn">∛x</li>
+                        <li class="dropdown-item cal-btn">x<sup>3</sup></li>
+                    </ul>
+                </div>
+                <button class="cal-btn col me-1 mb-1">π</button>
+                <button class="cal-btn col me-1 mb-1">e</button>
+                <button class="cal-btn col me-1 mb-1">C</button>
+                <button class="cal-btn col me-1 mb-1">⌫</button>
+            </div>
+            <div class="buttons row m-0">
+                <button class="cal-btn col me-1 ms-1 mb-1">x<sup>2</sup></button>
+                <button class="cal-btn col me-1 mb-1"><sup>1</sup>/<sub>x</sub></button>
+                <button class="cal-btn col me-1 mb-1">|x|</button>
+                <button class="cal-btn col me-1 mb-1">exp</button>
+                <button class="cal-btn col me-1 mb-1">mod</button>
+            </div>
+            <div class="buttons row m-0">
+                <button class="cal-btn col me-1 ms-1 mb-1">√</button>
+                <button class="cal-btn col me-1 mb-1 add-to-screen">(</button>
+                <button class="cal-btn col me-1 mb-1 add-to-screen">)</button>
+                <button class="cal-btn col me-1 mb-1">n!</button>
+                <button class="cal-btn col me-1 mb-1 add-to-screen">÷</button>
+            </div>
+            <div class="buttons row m-0">
+                <button class="cal-btn col me-1 ms-1 mb-1">x<sup>y</sup></button>
+                <button class="cal-btn col me-1 mb-1 cal-num add-to-screen b">7</button>
+                <button class="cal-btn col me-1 mb-1 cal-num add-to-screen b">8</button>
+                <button class="cal-btn col me-1 mb-1 cal-num add-to-screen b">9</button>
+                <button class="cal-btn col me-1 mb-1 add-to-screen">X</button>
+            </div>
+            <div class="buttons row m-0">
+                <button class="cal-btn col me-1 ms-1 mb-1">10<sup>x</sup></button>
+                <button class="cal-btn col me-1 mb-1 cal-num add-to-screen b">4</button>
+                <button class="cal-btn col me-1 mb-1 cal-num add-to-screen b">5</button>
+                <button class="cal-btn col me-1 mb-1 cal-num add-to-screen b">6</button>
+                <button class="cal-btn col me-1 mb-1 add-to-screen">−</button>
+            </div>
+            <div class="buttons row m-0">
+                <button class="cal-btn col me-1 ms-1 mb-1 add-to-screen">log</button>
+                <button class="cal-btn col me-1 mb-1 cal-num add-to-screen b">1</button>
+                <button class="cal-btn col me-1 mb-1 cal-num add-to-screen b">2</button>
+                <button class="cal-btn col me-1 mb-1 cal-num add-to-screen b">3</button>
+                <button class="cal-btn col me-1 mb-1 add-to-screen">+</button>
+            </div>
+            <div class="buttons row m-0">
+                <button class="cal-btn col me-1 ms-1 mb-1">In</button>
+                <button class="cal-btn col me-1 mb-1">±</button>
+                <button class="cal-btn col me-1 mb-1 cal-num add-to-screen b">0</button>
+                <button class="cal-btn col me-1 mb-1 add-to-screen">.</button>
+                <button class="cal-btn col me-1 mb-1 eqs">=</button>
+            </div>
+        </div>
+    </div>
+    <script src="./app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/f8ae37f600.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-size: 15px;
+  font-weight:300;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  color: #212121;
+}
+
+.cal-container {
+  height: 500px;
+  width: 350px;
+  background-color: #f0f0f0;
+  border-radius: 2px;
+}
+
+.cal-display{
+    height:65px;
+    font-size: 30px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.cal-btn {
+    border: none ;
+    border-radius: 2px;
+    height: 40px;
+  background-color: #f7f7f7;
+  cursor: pointer;
+}
+
+.cal-btn:hover {
+    background-color: #65c1ff;
+}
+.cal-num{
+    background-color: #ffffff;
+}
+.cal-btn-dd{
+  width: 65px !important;
+  border: none ;
+    height: 40px;
+  background-color: #f7f7f7;
+}
+.dm{
+  height: 40px;
+}
+
+.eqs {
+  background-color: #0099ff;
+}
+
+.f-row-btn{
+    width: 60px !important;
+}
+
+.f-row-btn,
+.s-row-btn{
+ background-color: #f0f0f0; ;
+}
+
+.trigno{
+    font-size: 12px;
+    width: 120px !important;
+    margin-right: 20px;
+}
+
+.trigno img{
+    width: 20px;
+    height: 20px;
+}
+.trigno i{
+    font-size: 12px;
+}
+
+.fun{
+    width:75%;
+}
+
+.dropdown-menu{
+    border:none !important;
+    border-radius: 1px !important;
+    text-align: center !important;
+}
+
+.b{
+  font-weight:500;
+}
