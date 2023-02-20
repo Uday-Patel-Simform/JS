@@ -1,8 +1,11 @@
 let display = document.querySelector('h1');
 let buttons = document.querySelectorAll(".cal-btn");
 // init memory variables
-let memory = 0;
+var memory = 0;
 let data_memory = [];
+var mc = document.getElementById("mc");
+var mr = document.getElementById("mr");
+
 buttons.forEach(button => {
     button.addEventListener('click', () => {
         if (button.textContent == 'X') {
@@ -98,10 +101,10 @@ buttons.forEach(button => {
             mClear();
         }
         else if (button.textContent == 'MR') {
-            display.textContent = data_memory;
+            mRecall()
         }
         else if (button.textContent == 'MS') {
-            data_memory.push(display.textContent);
+            mStore(display.textContent);
         }
         else if (button.textContent == 'DEG') {
             button.textContent = 'RAD';
@@ -127,7 +130,10 @@ buttons.forEach(button => {
             display.textContent = displayAns(Math.pow(display.textContent, 3));
         }
         else {
-            display.textContent += button.textContent;
+            if(display.textContent == '0' && button.textContent != '.'){
+                console.log(button.textContent);
+                display.textContent = button.textContent;
+            }else display.textContent += button.textContent;
         }
     });
 });
@@ -136,23 +142,37 @@ buttons.forEach(button => {
 // handling "=" operation
 const equals = (Content) => {
     if (Content.includes('^')) {
-        let temp = Content;
-        var count = temp.match(/\W/g).length;
-        if (count > 1) {
-            display.textContent = 'Syntax Error!';
+        if (Content.length == 1) {
+            display.textContent = 'ERROR!!';
+        } else {
+            let temp = Content;
+            var count = temp.match(/\W/g).length;
+            if (count > 1) {
+                display.textContent = 'Syntax Error!';
+            }
+            let base = Content.slice(0, Content.indexOf('^'));
+            let exponent = Content.slice(Content.indexOf('^') + 1);
+            if(exponent == ''){
+                exponent = 1;
+            }
+            display.textContent = displayAns(Math.pow(base, exponent));
         }
-        let base = Content.slice(0, Content.indexOf('^'));
-        let exponent = Content.slice(Content.indexOf('^') + 1);
-        display.textContent = displayAns(Math.pow(base, exponent));
     } else if (Content.includes('%')) {
-        let temp = Content;
-        var count = temp.match(/\W/g).length;
-        if (count > 1) {
-            display.textContent = 'Syntax Error!';
+        if (Content.length == 1) {
+            display.textContent = 'ERROR!!';
+        } else {
+            let temp = Content;
+            var count = temp.match(/\W/g).length;
+            if (count > 1) {
+                display.textContent = 'Syntax Error!';
+            }
+            let n1 = Content.slice(0, Content.indexOf('%'));
+            let n2 = Content.slice(Content.indexOf('%') + 1);
+            if(n2==''){
+                display.textContent = 'ERROR!!';
+            } else display.textContent = displayAns(n1 % n2);
+            
         }
-        let n1 = Content.slice(0, Content.indexOf('%'));
-        let n2 = Content.slice(Content.indexOf('%') + 1);
-        display.textContent = displayAns(n1 % n2);
     }
     else {
         try {
@@ -167,6 +187,8 @@ const equals = (Content) => {
 const displayAns = (ans) => {
     if (countDecimal(ans) > 10) {
         return ans.toFixed(10);
+    } if (display.textContent == '') {
+        return '';
     } else {
         return ans;
     }
@@ -178,6 +200,20 @@ const countDecimal = (ans) => {
         return 0;
     }
 }
+
+document.addEventListener('keydown', function(event) {
+    var key = event.key;
+    if (!isNaN(key) || key === '+' || key === '-' || key === '*' || key === '/' || key === '.' || key === '(' || key === ')' || key === '^' || key === '|' || key === '%' ) {
+        display.textContent += key; 
+    }else if(key === "Backspace"){
+        if (display.textContent.length > 0) {
+            display.textContent = display.textContent.slice(0, -1);
+        }
+        display.textContent = display.textContent;
+    }else if (key === 'Enter') {
+        equals(display.textContent);
+    }
+});
 
 // handling "⌫" operation
 const back = (content) => {
@@ -219,18 +255,35 @@ const fact = (content) => {
 // Memory functions
 const mAdd = (content) => {
     memory += parseFloat(content);
-    data_memory.push(memory);
+    data_memory.push('+');
+    data_memory.push(content);
     display.textContent = memory;
 }
 
 const mSub = (content) => {
     memory -= content;
-    data_memory.push(memory);
+    data_memory.push('-');
+    data_memory.push(content);
     display.textContent = memory;
+}
+
+const mStore = (content) => {
+    memory += parseFloat(content);
+    data_memory.push(content);
+    mc.disabled = false;
+    mr.disabled = false;
 }
 
 const mClear = () => {
     memory = 0;
     data_memory = [];
     display.textContent = data_memory;
+    mc.disabled = true;
+    mr.disabled = true;
+}
+
+const mRecall = () => {
+    data_memory.push('=');
+    data_memory.push(memory);
+    display.textContent = data_memory.join('');
 }
